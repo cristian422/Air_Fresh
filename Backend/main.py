@@ -1,4 +1,6 @@
 #impor fastapi
+from apScheduler import start_jobs, stop_jobs
+
 from fastapi import FastAPI, APIRouter
 #impor routers
 #from appi import traficoRouter
@@ -24,9 +26,9 @@ app = FastAPI(title="FreshAir API",
 
 #app.include_router(traficoRouter, prefix="/trafico", tags=["Trafico"])
 #incluimos el router de calidad del aire
-from openAQ import airRouter
+from Backend.openAQ import airRouter
 from BDquery.BdConsultas import BdConsultas
-from apisAirfresh import apiAirfresh
+from Backend.apisAirfresh import apiAirfresh
 app.include_router(apiAirfresh)
 app.include_router(BdConsultas)
 app.include_router(airRouter)

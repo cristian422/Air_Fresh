@@ -5,7 +5,7 @@ from typing import List, Optional
 from sqlalchemy import text
 from sqlalchemy.orm import Session as SASession
 
-from BdConexion import Session as SessionLocal, engine
+from Backend.BdConexion import Session as SessionLocal, engine
 from schemas.mediciones import MedicionOut
 from schemas.promedios import PromedioOut
 

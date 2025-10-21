@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from BdConexion import Base   # ✅ importa tu Base de bd.py
+from Backend.BdConexion import Base   # ✅ importa tu Base de bd.py
 
 from sqlalchemy import Column, Integer, String, Numeric, TIMESTAMP
 

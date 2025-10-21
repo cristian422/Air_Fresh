@@ -3,8 +3,8 @@ import asyncio
 from datetime import datetime, timezone
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
-from openAQ import get_openaq_Bylocation, save_location_data
-from jobs_promedios import refresh_promedios_sync
+from Backend.openAQ import get_openaq_Bylocation, save_location_data
+from Backend.apScheduler.jobs_promedios import refresh_promedios_sync
 
 MONITORED_IDS = {2163023}
 scheduler: AsyncIOScheduler | None = None  # referencia global

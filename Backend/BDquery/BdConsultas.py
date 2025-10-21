@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from sqlalchemy import text
-from BdConexion import Session  # <-- tu sesión síncrona
+from Backend.BdConexion import Session  # <-- tu sesión síncrona
 
 BdConsultas = APIRouter(prefix="/consulta", tags=["consultas bd"])
 

@@ -1,6 +1,6 @@
 # jobs_promedios.py
 from sqlalchemy import text
-from BdConexion import Session as SessionLocal  # tu SessionLocal síncrona
+from Backend.BdConexion import Session as SessionLocal  # tu SessionLocal síncrona
 
 DDL_PROMEDIOS = """
 CREATE TABLE IF NOT EXISTS promedios (

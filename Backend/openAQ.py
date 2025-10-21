@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 import httpx
 from models.mediciones import Medicion  # ✅ este es el ORM, no el schema
-from BdConexion import Session  # ✅ cliente correcto
+from Backend.BdConexion import Session  # ✅ cliente correcto
 from datetime import datetime
 
 airRouter = APIRouter(prefix="/air", tags=["Air Quality"])
