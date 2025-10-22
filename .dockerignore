@@ -1,11 +1,55 @@
-.venv/
-pyvenv.cfg
+# Python
 __pycache__/
-*.pyc
-*.pyo
-.git
-.vscode
-.idea
-.env
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
 dist/
 build/
+*.egg
+*.pyc
+*.pyo
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+pyvenv.cfg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker
+docker-compose*.override.yml
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Database
+*.db
+*.sqlite
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+README.md
+README_DOCKER.md
+docs/

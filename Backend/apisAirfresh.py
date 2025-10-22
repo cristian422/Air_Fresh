@@ -6,8 +6,8 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session as SASession
 
 from Backend.BdConexion import Session as SessionLocal, engine
-from schemas.mediciones import MedicionOut
-from schemas.promedios import PromedioOut
+from Backend.schemas.mediciones import MedicionOut
+from Backend.schemas.promedios import PromedioOut
 
 apiAirfresh = APIRouter(prefix="/ApiAirfresh", tags=["API Airfresh"])
 

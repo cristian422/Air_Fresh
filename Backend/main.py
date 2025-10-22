@@ -1,16 +1,22 @@
 #impor fastapi
-from apScheduler import start_jobs, stop_jobs
-
 from fastapi import FastAPI, APIRouter
 #impor routers
 #from appi import traficoRouter
-from apScheduler.apScheduler import start_jobs, stop_jobs
+from Backend.apScheduler.apScheduler import start_jobs, stop_jobs
+from Backend.BdConexion import engine, Base
+from Backend.models.mediciones import Medicion
 # que es contextlib?
 # utilidades para context managers async
 from contextlib import asynccontextmanager
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # === Startup ===
+    # Crear tablas si no existen
+    print("🔧 Inicializando base de datos...")
+    Base.metadata.create_all(bind=engine)
+    print("✅ Base de datos lista!")
+    
     start_jobs()                 # enciende APScheduler
     try:
         yield                    # la app queda corriendo
@@ -27,7 +33,7 @@ app = FastAPI(title="FreshAir API",
 #app.include_router(traficoRouter, prefix="/trafico", tags=["Trafico"])
 #incluimos el router de calidad del aire
 from Backend.openAQ import airRouter
-from BDquery.BdConsultas import BdConsultas
+from Backend.BDquery.BdConsultas import BdConsultas
 from Backend.apisAirfresh import apiAirfresh
 app.include_router(apiAirfresh)
 app.include_router(BdConsultas)

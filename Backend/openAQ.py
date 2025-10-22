@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 import os
 import httpx
-from models.mediciones import Medicion  # ✅ este es el ORM, no el schema
+from Backend.models.mediciones import Medicion  # ✅ este es el ORM, no el schema
 from Backend.BdConexion import Session  # ✅ cliente correcto
 from datetime import datetime
 
@@ -16,7 +16,9 @@ BASE = "https://api.openaq.org/v3"
 
 async def get_openaq_Bylocation(location_id: int, params: dict | None = None):
     url = f"{BASE}/locations/{location_id}"
-    headers = {"X-API-Key": OPENAQ_API_KEY}
+    headers = {}
+    if OPENAQ_API_KEY:
+        headers["X-API-Key"] = OPENAQ_API_KEY
 
     async with httpx.AsyncClient(timeout=10) as client:
         resp = await client.get(url, headers=headers, params=params or {})

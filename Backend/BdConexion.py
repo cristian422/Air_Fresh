@@ -12,12 +12,16 @@ import os
 # Cargar .env
 load_dotenv()
 
-
-# Leer contraseña desde variable de entorno
-db_password = os.getenv("DataBasePassword")
-
-# Construir la URL de conexión a Postgres local
-DB_URL = f"postgresql+psycopg2://postgres:{db_password}@localhost:5432/Airfresh"
+# Leer configuración de base de datos desde variables de entorno
+# En Docker, DATABASE_URL viene del docker-compose.yml
+# En desarrollo local, se construye desde las variables individuales
+DB_URL = os.getenv(
+    "DATABASE_URL",
+    f"postgresql+psycopg2://{os.getenv('POSTGRES_USER', 'postgres')}:"
+    f"{os.getenv('POSTGRES_PASSWORD', os.getenv('DataBasePassword', 'tallerdedi1'))}@"
+    f"{os.getenv('DB_HOST', 'localhost')}:5432/"
+    f"{os.getenv('POSTGRES_DB', 'Airfresh')}"
+)
 
 # Crear el engine y la sesión
 engine = create_engine(DB_URL, pool_pre_ping=True, future=True)

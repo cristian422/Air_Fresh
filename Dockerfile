@@ -32,9 +32,8 @@ WORKDIR /app
 COPY --from=builder /wheels /wheels
 RUN pip install --no-cache-dir /wheels/* && rm -rf /wheels
 
-# Copia tu carpeta real
+# Copia tu carpeta Backend
 COPY Backend ./Backend
-COPY Backend ./apScheduler
 
 EXPOSE ${PORT}
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD curl -fsS http://localhost:${PORT}/docs || exit 1

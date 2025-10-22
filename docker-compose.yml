@@ -33,6 +33,7 @@ services:
       PORT: 8000
       WORKERS: 2
       DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-tallerdedi1}@db:5432/${POSTGRES_DB:-Airfresh}
+      OPENAQ_API_KEY: ${OPENAQ_API_KEY:-}
     ports:
       - "8000:8000"
     networks:

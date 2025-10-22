@@ -22,10 +22,8 @@ async def poll_all(ids):
 
 async def refresh_promedios_job():
     try:
-        # correr función SINCRONA en un hilo, por cada location
-        await asyncio.gather(
-            *(asyncio.to_thread(refresh_promedios_sync, loc_id) for loc_id in MONITORED_IDS)
-        )
+        # correr función SINCRONA en un hilo (sin argumentos, calcula para todas)
+        await asyncio.to_thread(refresh_promedios_sync)
         print(f"[JOB] promedios actualizados para {sorted(MONITORED_IDS)}", flush=True)
     except Exception as e:
         print(f"[JOB ERR] refresh_promedios_job: {e}", flush=True)
@@ -39,7 +37,7 @@ def start_jobs():
     scheduler.add_job(
         poll_all,                                     # ← función async
         args=[MONITORED_IDS],
-        trigger=IntervalTrigger(minutes=5),
+        trigger=IntervalTrigger(minutes=1),
         id="poll_openaq_2min",
         replace_existing=True,
         max_instances=1,
